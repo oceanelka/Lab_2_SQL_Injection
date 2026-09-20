@@ -266,8 +266,8 @@ class TechniqueRepository(Repository):
         Parameters:
             technique_type -- the technique type string to filter by
         """
-        query = f"SELECT * FROM techniques WHERE technique_type = '{technique_type}'"
-        return self._db.fetchall(query, ())
+        query = f"SELECT * FROM techniques WHERE technique_type = ? "
+        return self._db.fetchall(query, (technique_type,))
 
     def find_by_era(self, year):
         """
