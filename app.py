@@ -150,10 +150,9 @@ class PhreakerRepository(Repository):
             handle   -- the submitted handle string
             password -- the submitted plain text password string
         """
-        query = ("SELECT * FROM phreakers WHERE handle = '"
-                 + handle + "' AND password = '" + password + "'")
+        query = "SELECT * FROM phreakers WHERE handle = ? AND password =?"
         try:
-            results = self._db.fetchall(query, ())
+            results = self._db.fetchall(query, (handle,password))
             return results[0] if results else None
         except Exception as e:
             print(f"[DB ERROR] {e}")
