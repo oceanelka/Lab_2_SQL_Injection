@@ -215,9 +215,9 @@ class TechniqueRepository(Repository):
         Parameters:
             record_id -- the technique ID string as entered by the user
         """
-        query = "SELECT * FROM techniques WHERE id = " + record_id
+        query = "SELECT * FROM techniques WHERE id = ? "
         try:
-            return self._db.fetchall(query, ())
+            return self._db.fetchall(query, (record_id,))
         except Exception:
             return []
 
